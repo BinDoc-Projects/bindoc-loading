@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, OnDestroy, OnInit, SimpleChange} from "@angular/core";
+import {Component, Input, OnChanges, OnDestroy, SimpleChange} from "@angular/core";
 import {BdLoadingItem} from "./loading-item.model";
 import {Subscription} from "rxjs/Subscription";
 
@@ -22,7 +22,7 @@ import {Subscription} from "rxjs/Subscription";
   `,
   styles: [``]
 })
-export class BdLoadingContainerComponent implements OnInit, OnChanges, OnDestroy {
+export class BdLoadingContainerComponent implements OnChanges, OnDestroy {
 
   @Input() waitFor: Promise<any>;
 
@@ -30,11 +30,6 @@ export class BdLoadingContainerComponent implements OnInit, OnChanges, OnDestroy
 
   private _item: BdLoadingItem;
   private _itemListener: Subscription;
-
-  ngOnInit(): void {
-    console.log(this.waitFor)
-    console.log(this.loaded)
-  }
 
   ngOnChanges(changes: any): void {
     if(changes.waitFor) {

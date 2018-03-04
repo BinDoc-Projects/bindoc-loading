@@ -6,7 +6,11 @@ import {Subscription} from "rxjs/Subscription";
   selector: 'bd-loading',
   template: `
     <div>
-      <ng-container *ngIf="!loaded">
+      <ng-container *ngIf="!loaded && !waitFor">
+        <ng-content select="[onInit]">
+        </ng-content>
+      </ng-container>
+      <ng-container *ngIf="!loaded && !!waitFor">
         <ng-content select="[onLoad]">
         </ng-content>
       </ng-container>
@@ -28,7 +32,8 @@ export class BdLoadingContainerComponent implements OnInit, OnChanges, OnDestroy
   private _itemListener: Subscription;
 
   ngOnInit(): void {
-    this.loaded = !this.waitFor;
+    console.log(this.waitFor)
+    console.log(this.loaded)
   }
 
   ngOnChanges(changes: any): void {

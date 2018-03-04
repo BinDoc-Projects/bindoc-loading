@@ -4,24 +4,55 @@ import {Component, OnInit} from '@angular/core';
   selector: 'demo-app',
   template: `
     <h1>Demo app</h1>
-    <bd-loading [waitFor]="asyncTask">
-      <loading-template onLoad>
-      </loading-template>
-      <div onFinish>
-        <span>Finished loading</span>
-      </div>
-    </bd-loading>
+    <div>
+      <h2>Simple demo</h2>
+      <bd-loading [waitFor]="asyncTaskOne">
+        <div onLoad>
+          <loading-template>
+          </loading-template>
+        </div>
+        <div onFinish>
+          <span>Finished loading</span>
+        </div>
+      </bd-loading>
+    </div>
+    <div>
+      <h2>Demo with init state</h2>
+      <bd-loading [waitFor]="asyncTaskTwo">
+        <div onInit>
+          <button (click)="doAsyncTask()">
+            <span>Do async task</span>
+          </button>
+        </div>
+        <div onLoad>
+          <loading-template>
+          </loading-template>
+        </div>
+        <div onFinish>
+          <span>Finished loading</span>
+        </div>
+      </bd-loading>
+    </div>
   `,
   styles: [`
 
   `]
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
 
-  public asyncTask: Promise<any>;
+  public asyncTaskOne: Promise<any> = null;
+  public asyncTaskTwo: Promise<any> = null;
 
-  ngOnInit(): void {
-    this.asyncTask = new Promise((resolve) => {
+  constructor() {
+    this.asyncTaskOne = this.getAsynctask();
+  }
+
+  public doAsyncTask() {
+    this.asyncTaskTwo = this.getAsynctask();
+  }
+
+  private getAsynctask(): Promise<any> {
+    return new Promise((resolve) => {
       setTimeout(() => {
         resolve();
       }, 3000);

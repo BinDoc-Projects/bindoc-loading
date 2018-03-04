@@ -1,6 +1,6 @@
 {
   "name": "@bindoc/loading",
-  "version": "1.0.0-beta.0",
+  "version": "1.0.0",
   "description": "Small Angular lib for showing a template until a asynchrounus task finishes.",
   "main": "./loading.umd.js",
   "module": "./loading.es5.js",
@@ -56,7 +56,5 @@
     "typescript": "2.6.x",
     "zone.js": "0.8.x"
   },
-  "dependencies": {
-
-  }
+  "dependencies": {}
 }

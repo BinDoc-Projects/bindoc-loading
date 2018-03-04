@@ -24,4 +24,4 @@ echo "Publish version:                  $NEXT_VERSION"
 git push
 git push --tags
 
-npm publish dist --access public
+npm publish dist --access public --registry https://registry.npmjs.org

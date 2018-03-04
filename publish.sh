@@ -25,5 +25,4 @@ echo "Publish version:                  $NEXT_VERSION"
 git push
 git push --tags
 
-cd dist/
-npm publish
+npm publish dist --access public

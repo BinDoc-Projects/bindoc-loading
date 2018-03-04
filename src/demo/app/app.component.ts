@@ -1,16 +1,31 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'demo-app',
   template: `
     <h1>Demo app</h1>
-    <router-outlet></router-outlet>
+    <bd-loading [waitFor]="asyncTask">
+      <loading-template onLoad>
+      </loading-template>
+      <div onFinish>
+        <span>Finished loading</span>
+      </div>
+    </bd-loading>
   `,
   styles: [`
 
   `]
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
+  public asyncTask: Promise<any>;
+
+  ngOnInit(): void {
+    this.asyncTask = new Promise((resolve) => {
+      setTimeout(() => {
+        resolve();
+      }, 3000);
+    });
+  }
 }
 

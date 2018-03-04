@@ -29,7 +29,9 @@ import {Component, OnInit} from '@angular/core';
           </loading-template>
         </div>
         <div onFinish>
-          <span>Finished loading</span>
+          <button (click)="reset()">
+            <span>Reset</span>
+          </button>
         </div>
       </bd-loading>
     </div>
@@ -51,11 +53,15 @@ export class AppComponent {
     this.asyncTaskTwo = this.getAsynctask();
   }
 
+  public reset() {
+    this.asyncTaskTwo = null;
+  }
+
   private getAsynctask(): Promise<any> {
     return new Promise((resolve) => {
       setTimeout(() => {
         resolve();
-      }, 3000);
+      }, 1500);
     });
   }
 }

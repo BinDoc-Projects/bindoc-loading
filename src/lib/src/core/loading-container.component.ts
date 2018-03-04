@@ -45,8 +45,9 @@ export class BdLoadingContainerComponent implements OnChanges, OnDestroy {
   }
 
   private onWaitForChange(change: SimpleChange) {
+    this.loaded = false;
+    
     if(!!change.currentValue) {
-      this.loaded = false;
 
       if(!!this._item) {
         this._item.destroy();
